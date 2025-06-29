@@ -35,10 +35,17 @@ public class ConversationService {
 
     public Optional<List<String>> getIds() {
         return Optional.of(
-                conversationDao.findAll().stream()
+                sortConversations(conversationDao.findAll()).stream()
                         .map(Conversation::getConversationId)
                         .toList()
         );
+    }
+
+    // sort conversations by creation date, from newest to oldest
+    private List<Conversation> sortConversations(List<Conversation> conversations) {
+        return conversations.stream()
+                .sorted(Comparator.comparing(Conversation::getCreatedAt).reversed())
+                .collect(Collectors.toList());
     }
 
 //    @Transactional
