@@ -2,6 +2,10 @@
 
 An AI medical diagnostic specialist with memory and persistent storage.
 
+## Important
+
+This project is for learning only, please do not use it in production environment.
+
 ## Requirements
 
 - At least 8GB GPU memory, 12GB is recommended
