@@ -1,0 +1,15 @@
+@import "tailwindcss";
+
+html {
+    scrollbar-color: #9499a1 #f1f1f1;
+    scrollbar-width: thin;
+    scroll-behavior: smooth;
+    line-height: 1.5;
+}
+
+.rubik-regular {
+    font-family: "Rubik", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+}
