@@ -1,7 +1,7 @@
 import { useEffect, useRef, useCallback, useReducer } from 'react';
 import AssistantMessage from './AssistantMessage';
 import UserMessage from './UserMessage';
-import TextInput from './TextInput';
+import TextInput from './textInput.jsx';
 import { getMessages, createConversation, chat } from '../utils/request';
 
 export default function Chat({ currentConversation, setCurrentConversation }) {
@@ -54,6 +54,7 @@ export default function Chat({ currentConversation, setCurrentConversation }) {
         let buffer = "";
         try {
             const reader = await chat(id, prompt);
+            abortCtrl.currentReader = reader;
             const decoder = new TextDecoder("utf-8");
             while (true) {
                 const { value, done } = await reader.read();
@@ -73,6 +74,7 @@ export default function Chat({ currentConversation, setCurrentConversation }) {
 
     const handleStopGenerating = useCallback(() => {
         abortCtrl.current?.abort();
+        abortCtrl.currentReader?.cancel();
         dispatch({ type: ChatReducerTypes.STOP });
     }, []);
 
